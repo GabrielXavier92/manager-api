@@ -4,5 +4,8 @@ module.exports = {
   ],
   parserOptions: {
     project: './tsconfig.json',
+  },
+  rules: {
+    "import/extensions": 0
   }
 };
