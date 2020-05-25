@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon --watch 'src/**/*' --exec ts-node --files src/index.ts",
+    "dev": "NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prisma-create-migrations": "npx prisma migrate save --name init --experimental",
     "prisma-create-tables": "npx prisma migrate up --experimental",
