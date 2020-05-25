@@ -9,7 +9,8 @@
     "prisma-create-migrations": "npx prisma migrate save --name init --experimental",
     "prisma-create-tables": "npx prisma migrate up --experimental",
     "prisma-generate-schemas": "npx prisma generate",
-    "prisma-studio": "npx prisma studio --experimental"
+    "prisma-studio": "npx prisma studio --experimental",
+    "generate-types": "graphql-codegen"
   },
   "keywords": [],
   "author": "Gabriel Xavier",
@@ -26,6 +27,9 @@
     "typescript": "^3.9.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.14.0",
+    "@graphql-codegen/typescript": "^1.8.1",
+    "@graphql-codegen/typescript-operations": "^1.8.1",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "eslint": "^7.1.0",
     "eslint-config-airbnb-typescript": "^7.2.1",
