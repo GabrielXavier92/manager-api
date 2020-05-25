@@ -1,17 +1,10 @@
 import { GraphQLModule } from '@graphql-modules/core';
-import gql from 'graphql-tag';
+import { importSchema } from 'graphql-import';
+import { join } from 'path';
 
 const AccountModule = new GraphQLModule({
   name: 'AccountModule',
-  typeDefs: gql`
-    type Query {
-      myData: Data
-    }
-
-    type Data {
-      field: String
-    }
-  `,
+  typeDefs: importSchema(join(__dirname, 'schema.graphql')),
 });
 
 export default AccountModule;

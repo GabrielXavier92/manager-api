@@ -1,0 +1,57 @@
+scalar DateTime
+
+type Query {
+  me: String
+}
+
+type Mutation {
+  createAccount(input: CreateAccountInput!): Account  
+  sigIn(input: LoginUserInput): User
+}
+
+enum Gender {
+  MASCULINO
+  FEMININO
+}
+
+enum Plan {
+  MASCULINO
+  FEMININO
+}
+
+input CreateAccountInput {
+  email: String!
+  password: String!
+  name: String!
+  plan: Plan
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type LoginUser {
+  token: String!
+  user: User!
+}
+
+type Account {
+  id: ID!
+  plan: Plan
+  name: String
+  users: [User]
+  status: Boolean
+  createdAt: DateTime
+}
+
+type User {
+  id: ID!
+  status: Boolean
+  email: String
+  name: String
+  gender: Gender
+  roles: [String!]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
