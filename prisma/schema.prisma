@@ -16,7 +16,7 @@ enum Plan {
 
 
 model Account {
-  id Int          @id @default(autoincrement())
+  id String          @id @default(uuid())
   plan Plan @default(STARTER)
   status Boolean  @default(true)
   name String
@@ -31,9 +31,9 @@ enum Gender {
 }
 
 model User {
-  id Int          @id @default(autoincrement())
+  id String          @id @default(uuid())
   account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
-  accountId Int // Relacionamento com a conta
+  accountId String // Relacionamento com a conta
   status Boolean @default(true)
   email String @unique
   password String
@@ -41,21 +41,21 @@ model User {
   gender Gender? // Enum
   roles Roles[] @relation(references: [id])  // Relacionamento com as roles
   doctor Doctor?  @relation(fields: [doctorId], references: [id]) // Relacionamento com um Doctor caso exista
-  doctorId Int? // Relacionamento com um Doctor caso exista
+  doctorId String? // Relacionamento com um Doctor caso exista
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Roles {
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
   role String @unique
   users User[] @relation(references: [id])
 }
 
 model Doctor {
-  id Int          @id @default(autoincrement())
+  id String          @id @default(uuid())
   account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
-  accountId Int // Relacionamento com a conta
+  accountId String // Relacionamento com a conta
   user User? // Relacionamento com um User caso exista
   name String
   gender Gender? // Enum
@@ -67,9 +67,9 @@ model Doctor {
 }
 
 model Patient {
-  id Int          @id @default(autoincrement())
+  id String          @id @default(uuid())
   account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
-  accountId Int // Relacionamento com a conta
+  accountId String // Relacionamento com a conta
   name String
   gender Gender? // Enum
   birth DateTime?
@@ -79,13 +79,13 @@ model Patient {
 }
 
 model Guide {
-  id Int          @id @default(autoincrement())
+  id String          @id @default(uuid())
   account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
-  accountId Int // Relacionamento com a conta
+  accountId String // Relacionamento com a conta
   doctor Doctor @relation(fields: [doctorId], references: [id]) // Relacionamento com um Doctor
-  doctorId Int // Relacionamento com um Doctor
+  doctorId String // Relacionamento com um Doctor
   patient Patient @relation(fields: [patientId], references: [id]) // Relacionamento com um Patient
-  patientId Int // Relacionamento com um Patient
+  patientId String // Relacionamento com um Patient
   description String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

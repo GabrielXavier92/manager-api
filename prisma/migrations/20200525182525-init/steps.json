@@ -46,7 +46,7 @@
       "tag": "CreateField",
       "model": "Account",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -83,7 +83,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "uuid()"
     },
     {
       "tag": "CreateField",
@@ -152,6 +152,13 @@
     {
       "tag": "CreateField",
       "model": "Account",
+      "field": "name",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Account",
       "field": "users",
       "type": "User",
       "arity": "List"
@@ -214,7 +221,7 @@
       "tag": "CreateField",
       "model": "User",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -251,7 +258,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "uuid()"
     },
     {
       "tag": "CreateField",
@@ -303,7 +310,7 @@
       "tag": "CreateField",
       "model": "User",
       "field": "accountId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -459,7 +466,7 @@
       "tag": "CreateField",
       "model": "User",
       "field": "doctorId",
-      "type": "Int",
+      "type": "String",
       "arity": "Optional"
     },
     {
@@ -520,7 +527,7 @@
       "tag": "CreateField",
       "model": "Roles",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -557,7 +564,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "uuid()"
     },
     {
       "tag": "CreateField",
@@ -617,7 +624,7 @@
       "tag": "CreateField",
       "model": "Doctor",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -654,7 +661,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "uuid()"
     },
     {
       "tag": "CreateField",
@@ -706,7 +713,7 @@
       "tag": "CreateField",
       "model": "Doctor",
       "field": "accountId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -809,7 +816,7 @@
       "tag": "CreateField",
       "model": "Patient",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -846,7 +853,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "uuid()"
     },
     {
       "tag": "CreateField",
@@ -898,7 +905,7 @@
       "tag": "CreateField",
       "model": "Patient",
       "field": "accountId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -987,7 +994,7 @@
       "tag": "CreateField",
       "model": "Guide",
       "field": "id",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1024,7 +1031,7 @@
         "directive": "default"
       },
       "argument": "",
-      "value": "autoincrement()"
+      "value": "uuid()"
     },
     {
       "tag": "CreateField",
@@ -1076,7 +1083,7 @@
       "tag": "CreateField",
       "model": "Guide",
       "field": "accountId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1129,7 +1136,7 @@
       "tag": "CreateField",
       "model": "Guide",
       "field": "doctorId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
@@ -1182,7 +1189,7 @@
       "tag": "CreateField",
       "model": "Guide",
       "field": "patientId",
-      "type": "Int",
+      "type": "String",
       "arity": "Required"
     },
     {
