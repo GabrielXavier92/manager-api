@@ -6,7 +6,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  DateTime: any;
+  DateTime: Date;
 };
 
 
@@ -17,8 +17,8 @@ export type Query = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createAccount?: Maybe<Account>;
-  sigIn?: Maybe<User>;
+  createAccount: Account;
+  sigIn: User;
 };
 
 
@@ -31,15 +31,12 @@ export type MutationSigInArgs = {
   input?: Maybe<LoginUserInput>;
 };
 
-export enum Gender {
-  Masculino = 'MASCULINO',
-  Feminino = 'FEMININO'
-}
+export type Gender = 
+  | 'MASCULINO'
+  | 'FEMININO';
 
-export enum Plan {
-  Masculino = 'MASCULINO',
-  Feminino = 'FEMININO'
-}
+export type Plan = 
+  | 'STARTER';
 
 export type CreateAccountInput = {
   email: Scalars['String'];
@@ -62,7 +59,7 @@ export type LoginUser = {
 export type Account = {
   __typename?: 'Account';
   id: Scalars['ID'];
-  plan?: Maybe<Plan>;
+  plan: Plan;
   name?: Maybe<Scalars['String']>;
   users?: Maybe<Array<Maybe<User>>>;
   status?: Maybe<Scalars['Boolean']>;
@@ -80,3 +77,4 @@ export type User = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
+
