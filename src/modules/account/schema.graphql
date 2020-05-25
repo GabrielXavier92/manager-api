@@ -5,8 +5,8 @@ type Query {
 }
 
 type Mutation {
-  createAccount(input: CreateAccountInput!): Account  
-  sigIn(input: LoginUserInput): User
+  createAccount(input: CreateAccountInput!): Account!
+  sigIn(input: LoginUserInput): User!
 }
 
 enum Gender {
@@ -15,8 +15,7 @@ enum Gender {
 }
 
 enum Plan {
-  MASCULINO
-  FEMININO
+  STARTER
 }
 
 input CreateAccountInput {
@@ -38,7 +37,7 @@ type LoginUser {
 
 type Account {
   id: ID!
-  plan: Plan
+  plan: Plan!
   name: String
   users: [User]
   status: Boolean
