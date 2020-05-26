@@ -1,1 +1,2 @@
-export { default as AccountModule } from './account/index';
+export { default as AccountModule } from './account';
+export { default as DoctorModule } from './doctor';
