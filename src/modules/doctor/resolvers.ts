@@ -1,10 +1,14 @@
 import { ResolverMap } from '../../types/graphql-utils';
-import createDoctor from './resolvers/createDoctor'
+
+import createDoctor from './resolvers/createDoctor';
+import getDoctors from './resolvers/getDoctors';
 
 const Resolver: ResolverMap = {
-  Query: {},
+  Query: {
+    getDoctors,
+  },
   Mutation: {
-    createDoctor
+    createDoctor,
   },
 };
 
