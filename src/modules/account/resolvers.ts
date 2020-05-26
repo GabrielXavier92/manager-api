@@ -1,4 +1,4 @@
-import { AuthenticationError, UserInputError } from 'apollo-server';
+import { AuthenticationError, UserInputError, ForbiddenError } from 'apollo-server';
 
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
@@ -10,7 +10,24 @@ import { Account, MutationCreateAccountArgs } from '../../types/types';
 
 const Resolver: ResolverMap = {
   Query: {
-    me: () => 'Hello gala',
+    me: async (_, __, { prisma, user }): Promise<Account> => {
+      try {
+        const account = await prisma.account.findOne({
+          where: {
+            id: user?.accountId,
+          },
+          include: {
+            users: true,
+          },
+        });
+
+        if (!account) throw new ForbiddenError('Failed to fetch');
+
+        return account;
+      } catch (e) {
+        throw new ForbiddenError('Failed to fetch');
+      }
+    },
   },
   Mutation: {
     createAccount: async (_, { input }: MutationCreateAccountArgs, { prisma }): Promise<Account> => {
@@ -61,7 +78,7 @@ const Resolver: ResolverMap = {
 
         const roles = user.roles.map((role) => role.role);
 
-        const token = jwt.sign({ id: user.id, roles }, process.env.JWT_SECRET as string, {
+        const token = jwt.sign({ id: user.id, roles, accountId: user.accountId }, process.env.JWT_SECRET as string, {
           expiresIn: '7days',
         });
 
