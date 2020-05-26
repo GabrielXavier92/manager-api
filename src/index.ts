@@ -1,13 +1,13 @@
 import { GraphQLModule } from '@graphql-modules/core';
 import 'dotenv/config';
 import { ApolloServer } from 'apollo-server';
-import { AccountModule, DoctorModule } from './modules';
+import { AccountModule, DoctorModule, PatientModule } from './modules';
 import createContext from './utils/createContext';
 
 const startServer = async () => {
   const AppModule = new GraphQLModule({
     name: 'AppModule',
-    imports: [AccountModule, DoctorModule],
+    imports: [AccountModule, DoctorModule, PatientModule],
   });
 
 

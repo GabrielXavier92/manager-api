@@ -15,10 +15,17 @@ export type Query = {
   me: Account;
   getDoctor: Doctor;
   getDoctors?: Maybe<Array<Doctor>>;
+  getPatient: Patient;
+  getPatients?: Maybe<Array<Patient>>;
 };
 
 
 export type QueryGetDoctorArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetPatientArgs = {
   id: Scalars['ID'];
 };
 
@@ -28,6 +35,8 @@ export type Mutation = {
   signIn: LoginUser;
   createDoctor: Doctor;
   updateDoctor: Doctor;
+  createPatient: Patient;
+  updatePatient: Patient;
 };
 
 
@@ -49,6 +58,17 @@ export type MutationCreateDoctorArgs = {
 export type MutationUpdateDoctorArgs = {
   id: Scalars['ID'];
   input: DoctorInput;
+};
+
+
+export type MutationCreatePatientArgs = {
+  input: PatientInput;
+};
+
+
+export type MutationUpdatePatientArgs = {
+  id: Scalars['ID'];
+  input: PatientInput;
 };
 
 export type Gender = 
@@ -114,6 +134,23 @@ export type Doctor = {
   gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;
   register?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PatientInput = {
+  name: Scalars['String'];
+  gender?: Maybe<Gender>;
+  birth?: Maybe<Scalars['DateTime']>;
+};
+
+export type Patient = {
+  __typename?: 'Patient';
+  id: Scalars['ID'];
+  accountId: Scalars['ID'];
+  name: Scalars['String'];
+  gender?: Maybe<Gender>;
+  birth?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
