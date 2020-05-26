@@ -129,7 +129,6 @@ export type DoctorInput = {
 export type Doctor = {
   __typename?: 'Doctor';
   id: Scalars['ID'];
-  accountId: Scalars['ID'];
   name: Scalars['String'];
   gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;
@@ -140,14 +139,13 @@ export type Doctor = {
 
 export type PatientInput = {
   name: Scalars['String'];
-  gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;
+  gender?: Maybe<Gender>;
 };
 
 export type Patient = {
   __typename?: 'Patient';
   id: Scalars['ID'];
-  accountId: Scalars['ID'];
   name: Scalars['String'];
   gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;

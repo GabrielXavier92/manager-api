@@ -23,7 +23,6 @@ input PatientInput {
 
 type Patient {
   id: ID!
-  accountId: ID!
   name: String!
   gender: Gender
   birth: DateTime
