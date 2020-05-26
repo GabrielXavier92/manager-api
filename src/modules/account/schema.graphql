@@ -6,7 +6,7 @@ type Query {
 
 type Mutation {
   createAccount(input: CreateAccountInput!): Account!
-  sigIn(input: LoginUserInput): User!
+  signIn(input: LoginUserInput!): LoginUser!
 }
 
 enum Gender {

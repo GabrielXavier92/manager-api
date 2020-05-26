@@ -1,0 +1,82 @@
+import { AuthenticationError, UserInputError } from 'apollo-server';
+
+import * as bcrypt from 'bcryptjs';
+// import * as jwt from 'jsonwebtoken';
+
+import { MutationSignInArgs, LoginUser } from '../../types/types.d';
+
+import { ResolverMap } from '../../types/graphql-utils';
+import { Account, MutationCreateAccountArgs } from '../../types/types';
+
+const Resolver: ResolverMap = {
+  Query: {
+    me: () => 'Hello gala',
+  },
+  Mutation: {
+    createAccount: async (_, { input }: MutationCreateAccountArgs, { prisma }): Promise<Account> => {
+      const {
+        email, password, name, plan,
+      } = input;
+
+      try {
+        const hashPassword = await bcrypt.hash(password, 10);
+
+        const account = await prisma.account.create({
+          data: {
+            name,
+            plan,
+            users: {
+              create: {
+                email,
+                password: hashPassword,
+                name,
+                roles: {
+                  connect: [{ role: 'ADMIN' }],
+                },
+              },
+            },
+          },
+        });
+        return account;
+      } catch (e) {
+        console.error(e);
+        throw new UserInputError('Falha ao criar conta, verifique o email informado ou tente novamente mais tarde');
+      }
+    },
+    signIn: async (_, { input }: MutationSignInArgs, { prisma }): Promise<LoginUser> => {
+      const { email, password } = input;
+      try {
+        const user = await prisma.user.findOne({
+          where: {
+            email,
+          },
+          include: {
+            roles: true,
+          },
+        });
+
+
+        console.log(user);
+        if (!user) throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
+        await bcrypt.compare(password, user.password);
+
+
+        // const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
+        //   expiresIn: '7days',
+        // });
+
+        return {
+          token: 'asdasda',
+          user: {
+            id: 'asdsadas',
+          },
+        };
+      } catch (e) {
+        console.error(e);
+        throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
+      }
+    },
+  },
+};
+
+export default Resolver;

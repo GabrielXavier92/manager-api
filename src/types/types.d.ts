@@ -18,7 +18,7 @@ export type Query = {
 export type Mutation = {
   __typename?: 'Mutation';
   createAccount: Account;
-  sigIn: User;
+  signIn: LoginUser;
 };
 
 
@@ -27,8 +27,8 @@ export type MutationCreateAccountArgs = {
 };
 
 
-export type MutationSigInArgs = {
-  input?: Maybe<LoginUserInput>;
+export type MutationSignInArgs = {
+  input: LoginUserInput;
 };
 
 export type Gender = 
