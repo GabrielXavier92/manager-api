@@ -1,0 +1,35 @@
+scalar DateTime
+
+enum Gender {
+  MASCULINO
+  FEMININO
+}
+
+type Query {
+  getDoctor(id: ID!): Doctor!
+  getDoctors: [Doctor!]
+}
+
+type Mutation {
+  createDoctor(input: DoctorInput!): Doctor!
+  updateDoctor(id: ID!, input: DoctorInput!): Doctor!
+}
+
+input DoctorInput {
+  name: String!
+  gender: Gender
+  birth: DateTime
+  register: String
+}
+
+
+type Doctor {
+  id: ID!
+  accountId: ID!
+  name: String!
+  gender: Gender
+  birth: DateTime
+  register: String
+  createdAt: DateTime
+  updatedAt: DateTime
+}

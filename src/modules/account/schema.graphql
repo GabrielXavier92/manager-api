@@ -46,6 +46,7 @@ type Account {
 
 type User {
   id: ID!
+  accountId: ID!
   status: Boolean
   email: String
   name: String
