@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { ApolloServer } from 'apollo-server';
 import AccountModule from './modules/account';
 import createContext from './utils/createContext';
