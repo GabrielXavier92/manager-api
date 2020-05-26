@@ -1,7 +1,7 @@
 import { AuthenticationError, UserInputError } from 'apollo-server';
 
 import * as bcrypt from 'bcryptjs';
-// import * as jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 
 import { MutationSignInArgs, LoginUser } from '../../types/types.d';
 
@@ -55,20 +55,21 @@ const Resolver: ResolverMap = {
           },
         });
 
-
-        console.log(user);
         if (!user) throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
-        await bcrypt.compare(password, user.password);
 
+        if (!await bcrypt.compare(password, user.password)) throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
 
-        // const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
-        //   expiresIn: '7days',
-        // });
+        const roles = user.roles.map((role) => role.role);
+
+        const token = jwt.sign({ id: user.id, roles }, process.env.JWT_SECRET as string, {
+          expiresIn: '7days',
+        });
 
         return {
-          token: 'asdasda',
+          token,
           user: {
-            id: 'asdsadas',
+            ...user,
+            roles,
           },
         };
       } catch (e) {
