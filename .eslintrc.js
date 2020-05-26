@@ -7,6 +7,6 @@ module.exports = {
   },
   rules: {
     "import/extensions": 0,
-    "max-len": [2, 120, 4, { "ignoreUrls": true }]
+    "max-len": [2, 130, 4, { "ignoreUrls": true }]
   }
 };
