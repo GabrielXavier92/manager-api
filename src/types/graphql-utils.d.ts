@@ -9,6 +9,7 @@ export interface ResolverMap {
 }
 
 export interface Context {
+  user?: User;
   prisma: PrismaClient;
 }
 
