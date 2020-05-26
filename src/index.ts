@@ -1,19 +1,11 @@
 import { ApolloServer } from 'apollo-server';
-import { GraphQLModule } from '@graphql-modules/core';
-import { AccountModule } from './modules';
+import AccountModule from './modules/account';
 import createContext from './utils/createContext';
 
 const startServer = async () => {
-  const app = new GraphQLModule({
-    imports: [AccountModule],
-    context: createContext,
-  });
-
-  const { schema, context } = app;
-
   const server = new ApolloServer({
-    schema,
-    context,
+    modules: [AccountModule],
+    context: createContext,
     introspection: true,
     playground: true,
   });
