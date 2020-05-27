@@ -4,12 +4,18 @@ import { ApolloServer } from 'apollo-server';
 import {
   AccountModule, DoctorModule, GuideModule, PatientModule,
 } from './modules';
+
 import createContext from './utils/createContext';
+import addSelect from './utils/addSelect';
 
 const startServer = async () => {
   const AppModule = new GraphQLModule({
     name: 'AppModule',
     imports: [AccountModule, DoctorModule, GuideModule, PatientModule],
+    resolversComposition: {
+      Query: [addSelect],
+      Mutation: [addSelect],
+    },
   });
 
 
