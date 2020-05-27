@@ -15,12 +15,19 @@ export type Query = {
   me: Account;
   getDoctor: Doctor;
   getDoctors?: Maybe<Array<Doctor>>;
+  getGuide: Guide;
+  getGuides?: Maybe<Array<Guide>>;
   getPatient: Patient;
   getPatients?: Maybe<Array<Patient>>;
 };
 
 
 export type QueryGetDoctorArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetGuideArgs = {
   id: Scalars['ID'];
 };
 
@@ -35,6 +42,8 @@ export type Mutation = {
   signIn: LoginUser;
   createDoctor: Doctor;
   updateDoctor: Doctor;
+  createGuide: Guide;
+  updateGuides: Guide;
   createPatient: Patient;
   updatePatient: Patient;
 };
@@ -58,6 +67,17 @@ export type MutationCreateDoctorArgs = {
 export type MutationUpdateDoctorArgs = {
   id: Scalars['ID'];
   input: DoctorInput;
+};
+
+
+export type MutationCreateGuideArgs = {
+  input: GuideInput;
+};
+
+
+export type MutationUpdateGuidesArgs = {
+  id: Scalars['ID'];
+  input: GuideInput;
 };
 
 
@@ -135,21 +155,39 @@ export type Doctor = {
   register?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+  guides?: Maybe<Array<Maybe<Guide>>>;
 };
 
-export type PatientInput = {
-  name: Scalars['String'];
-  birth?: Maybe<Scalars['DateTime']>;
-  gender?: Maybe<Gender>;
+export type GuideInput = {
+  description: Scalars['String'];
+  patientId: Scalars['ID'];
+  doctorId: Scalars['ID'];
+};
+
+export type Guide = {
+  __typename?: 'Guide';
+  id: Scalars['ID'];
+  description: Scalars['String'];
+  doctor?: Maybe<Doctor>;
+  patient?: Maybe<Patient>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type Patient = {
   __typename?: 'Patient';
+  guides?: Maybe<Array<Maybe<Guide>>>;
   id: Scalars['ID'];
   name: Scalars['String'];
   gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PatientInput = {
+  name: Scalars['String'];
+  birth?: Maybe<Scalars['DateTime']>;
+  gender?: Maybe<Gender>;
 };
 

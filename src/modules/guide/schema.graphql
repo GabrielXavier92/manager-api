@@ -1,0 +1,39 @@
+scalar DateTime
+
+enum Gender {
+  MASCULINO
+  FEMININO
+}
+
+type Query {
+  getGuide(id: ID!): Guide!
+  getGuides: [Guide!]
+}
+
+type Mutation {
+  createGuide(input: GuideInput!): Guide!
+  updateGuides(id: ID!, input: GuideInput!): Guide!
+}
+
+input GuideInput {
+  description: String!
+  patientId: ID!
+  doctorId: ID!
+}
+
+type Guide {
+  id: ID!
+  description: String!
+  doctor: Doctor
+  patient: Patient
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+extend type Doctor {
+  guides: [Guide]
+}
+
+extend type Patient {
+  guides: [Guide]
+}
