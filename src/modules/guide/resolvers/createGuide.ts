@@ -1,9 +1,9 @@
 import { UserInputError } from 'apollo-server';
-import { MutationCreateGuideArgs, Guide } from '../../../types/types.d';
+import { Guide } from '../../../types/types.d';
 
 import { Resolver } from '../../../types/graphql-utils';
 
-const createGuide: Resolver = async (_, { input }: MutationCreateGuideArgs, { prisma, user }): Promise<Guide> => {
+const createGuide: Resolver = async (_, { input, select }, { prisma, user }): Promise<Guide> => {
   const {
     description, doctorId, patientId,
   } = input;
@@ -15,6 +15,7 @@ const createGuide: Resolver = async (_, { input }: MutationCreateGuideArgs, { pr
         doctor: { connect: { id: doctorId } },
         patient: { connect: { id: patientId } },
       },
+      ...select,
     });
     return guide;
   } catch (e) {

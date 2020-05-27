@@ -3,15 +3,13 @@ import { Resolver } from '../../../types/graphql-utils';
 import { Account } from '../../../types/types';
 
 
-const me: Resolver = async (_, __, { prisma, user }): Promise<Account> => {
+const me: Resolver = async (_, { select }, { prisma, user }): Promise<Account> => {
   try {
     const account = await prisma.account.findOne({
       where: {
         id: user?.accountId,
       },
-      include: {
-        users: true,
-      },
+      ...select,
     });
 
     if (!account) throw new ForbiddenError('Failed to fetch');

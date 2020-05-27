@@ -1,12 +1,9 @@
 import { UserInputError } from 'apollo-server';
-import { MutationUpdatePatientArgs, Patient } from '../../../types/types.d';
+import { Patient } from '../../../types/types.d';
 
 import { Resolver } from '../../../types/graphql-utils';
 
-const updatePatient: Resolver = async (_, { id, input }: MutationUpdatePatientArgs, { prisma, user }): Promise<Patient> => {
-  const {
-    name, birth, gender,
-  } = input;
+const updatePatient: Resolver = async (_, { id, input, select }, { prisma, user }): Promise<Patient> => {
   try {
     const patient = await prisma.patient.findOne({
       where: {
@@ -21,10 +18,9 @@ const updatePatient: Resolver = async (_, { id, input }: MutationUpdatePatientAr
         id,
       },
       data: {
-        name,
-        birth,
-        gender,
+        ...input,
       },
+      ...select,
     });
 
     return updatedPatient;

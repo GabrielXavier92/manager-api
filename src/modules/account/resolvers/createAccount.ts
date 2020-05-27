@@ -1,10 +1,10 @@
 import { UserInputError } from 'apollo-server';
 
 import * as bcrypt from 'bcryptjs';
-import { Account, MutationCreateAccountArgs } from '../../../types/types';
+import { Account } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
-const createAccount: Resolver = async (_, { input }: MutationCreateAccountArgs, { prisma }): Promise<Account> => {
+const createAccount: Resolver = async (_, { input, select }, { prisma }): Promise<Account> => {
   const {
     email, password, name, plan,
   } = input;
@@ -27,6 +27,7 @@ const createAccount: Resolver = async (_, { input }: MutationCreateAccountArgs, 
           },
         },
       },
+      ...select,
     });
     return account;
   } catch (e) {

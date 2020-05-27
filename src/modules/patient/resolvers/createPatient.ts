@@ -1,22 +1,18 @@
 import { UserInputError } from 'apollo-server';
-import { MutationCreatePatientArgs, Patient } from '../../../types/types.d';
+import { Patient } from '../../../types/types.d';
 
 import { Resolver } from '../../../types/graphql-utils';
 
-const createPatient: Resolver = async (_, { input }: MutationCreatePatientArgs, { prisma, user }): Promise<Patient> => {
-  const {
-    name, birth, gender,
-  } = input;
+const createPatient: Resolver = async (_, { input, select }, { prisma, user }): Promise<Patient> => {
   try {
     const patient = await prisma.patient.create({
       data: {
-        name,
-        birth,
-        gender,
+        ...input,
         account: {
           connect: { id: user?.accountId },
         },
       },
+      ...select,
     });
     return patient;
   } catch (e) {
