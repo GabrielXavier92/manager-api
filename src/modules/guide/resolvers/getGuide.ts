@@ -1,22 +1,23 @@
 import { UserInputError } from 'apollo-server';
-import { QueryGetPatientArgs, Patient } from '../../../types/types';
+import { Guide } from '../../../types/types.d';
 import { Resolver } from '../../../types/graphql-utils';
 
-const getPatient: Resolver = async (_, { id }: QueryGetPatientArgs, { prisma, user }): Promise<Patient> => {
+const getGuide: Resolver = async (_, { id, select }, { prisma, user }): Promise<Guide> => {
   try {
-    const patient = await prisma.patient.findOne({
+    const guide = await prisma.guide.findOne({
       where: {
         id,
       },
+      ...select,
     });
 
-    if (!patient || patient.accountId !== user?.accountId) throw new UserInputError('Paciente não encontrado ou token invalido');
+    if (!guide || guide.accountId !== user?.accountId) throw new UserInputError('Guia não encontrada ou token invalido');
 
-    return patient;
+    return guide;
   } catch (e) {
     console.error(e);
-    throw new UserInputError('Falha ao buscar profissional');
+    throw new UserInputError('Falha ao buscar guia');
   }
 };
 
-export default getPatient;
+export default getGuide;
