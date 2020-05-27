@@ -1,37 +1,33 @@
 import { UserInputError } from 'apollo-server';
-import { MutationUpdatePatientArgs, Patient } from '../../../types/types';
+import { Guide } from '../../../types/types.d';
 
 import { Resolver } from '../../../types/graphql-utils';
 
-const updatePatient: Resolver = async (_, { id, input }: MutationUpdatePatientArgs, { prisma, user }): Promise<Patient> => {
-  const {
-    name, birth, gender,
-  } = input;
+const updateGuide: Resolver = async (_, { id, input, select }, { prisma, user }): Promise<Guide> => {
   try {
-    const patient = await prisma.patient.findOne({
+    const guide = await prisma.guide.findOne({
       where: {
         id,
       },
     });
 
-    if (!patient || patient.accountId !== user?.accountId) throw new UserInputError('Paciente não encontrado ou token invalido');
+    if (!guide || guide.accountId !== user?.accountId) throw new UserInputError('Guia não encontrado ou token invalido');
 
-    const updatedPatient = await prisma.patient.update({
+    const updatedGuide = await prisma.guide.update({
       where: {
         id,
       },
       data: {
-        name,
-        birth,
-        gender,
+        ...input,
       },
+      ...select,
     });
 
-    return updatedPatient;
+    return updatedGuide;
   } catch (e) {
     console.error(e);
     throw new UserInputError('Falha ao editar paciente');
   }
 };
 
-export default updatePatient;
+export default updateGuide;
