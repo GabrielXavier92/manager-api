@@ -12,7 +12,7 @@ const me: Resolver = async (_, { select }, { prisma, user }): Promise<Account> =
       ...select,
     });
 
-    if (!account) throw new ForbiddenError('Failed to fetch');
+    if (!account) throw new ForbiddenError('Failed to fetch user');
 
     return account;
   } catch (e) {
