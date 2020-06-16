@@ -1,4 +1,4 @@
-import { AuthenticationError } from 'apollo-server';
+import { UserInputError } from 'apollo-server';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 
@@ -12,14 +12,14 @@ const signIn: Resolver = async (_, { input, select }, { prisma }): Promise<Login
       where: {
         email,
       },
-      ...select,
+      ...select.user,
     });
 
-    if (!user) throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
+    if (!user) throw new UserInputError('Falha ao realizar login, usuario nao encontrado.');
 
-    if (!await bcrypt.compare(password, user.password)) throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
+    if (!await bcrypt.compare(password, user.password)) throw new UserInputError('Falha ao realizar login, senha incorreta.');
 
-    const roles = await (await prisma.user.findOne({ where: { email } }).roles()).map((role) => role.role);
+    const roles = (await prisma.user.findOne({ where: { email } }).roles()).map((role) => role.role);
 
     const token = jwt.sign({ id: user.id, roles, accountId: user.accountId }, process.env.JWT_SECRET as string, {
       expiresIn: '7days',
@@ -31,7 +31,7 @@ const signIn: Resolver = async (_, { input, select }, { prisma }): Promise<Login
     };
   } catch (e) {
     console.error(e);
-    throw new AuthenticationError('Falha ao realizar login, verifique email/senha.');
+    throw new UserInputError('Falha ao realizar login, verifique email/senha.');
   }
 };
 
