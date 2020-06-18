@@ -15,7 +15,6 @@ const getGuide: Resolver = async (_, { id, select }, { prisma, user }): Promise<
 
     return guide;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao buscar guia');
   }
 };

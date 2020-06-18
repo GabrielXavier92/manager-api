@@ -25,7 +25,6 @@ const updateDoctor: Resolver = async (_, { id, input, select }, { prisma, user }
 
     return updatedDoctor;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao editar profissional');
   }
 };

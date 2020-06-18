@@ -15,7 +15,6 @@ const getDoctor: Resolver = async (_, { id, select }, { prisma, user }): Promise
 
     return doctor;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao buscar profissional');
   }
 };

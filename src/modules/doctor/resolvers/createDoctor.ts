@@ -16,7 +16,6 @@ const createDoctor: Resolver = async (_, { input, select }, { prisma, user }): P
     });
     return doctor;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao criar profissional');
   }
 };

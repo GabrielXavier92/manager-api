@@ -2,6 +2,7 @@ scalar DateTime
 
 type Query {
   me: Account!
+  getUser: User!
 }
 
 type Mutation {
@@ -51,7 +52,12 @@ type User {
   email: String
   name: String
   gender: Gender
-  roles: [String!]
+  roles: [Role!]
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+type Role {
+  id: ID!
+  role: String!
 }

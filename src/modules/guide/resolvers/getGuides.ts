@@ -13,7 +13,6 @@ const getGuides: Resolver = async (_, { select }, { prisma, user }): Promise<Arr
 
     return guides;
   } catch (e) {
-    console.error(e);
     throw new ForbiddenError('Falha ao buscar guia');
   }
 };

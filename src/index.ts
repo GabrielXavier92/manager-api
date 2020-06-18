@@ -1,6 +1,8 @@
 import { GraphQLModule } from '@graphql-modules/core';
 import 'dotenv/config';
 import { ApolloServer } from 'apollo-server';
+import Logger from '@est-normalis/simple-apollo-logger';
+
 import {
   AccountModule, DoctorModule, GuideModule, PatientModule,
 } from './modules';
@@ -24,6 +26,9 @@ const startServer = async () => {
     context: createContext,
     introspection: true,
     playground: true,
+    extensions: [() => new Logger({
+      ignoreSchemaRequest: true,
+    })],
   });
 
   const port = process.env.PORT || 4000;

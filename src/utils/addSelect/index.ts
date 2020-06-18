@@ -8,7 +8,7 @@ const addSelect = (next: any) => (root: any, args: any, context: any, info: any)
     result.select.accountId = true;
     newArgs = {
       ...args,
-      select: result,
+      fields: result,
     };
   }
 

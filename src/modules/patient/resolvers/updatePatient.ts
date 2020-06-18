@@ -25,7 +25,6 @@ const updatePatient: Resolver = async (_, { id, input, select }, { prisma, user 
 
     return updatedPatient;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao editar paciente');
   }
 };

@@ -13,7 +13,6 @@ const getPatients: Resolver = async (_, { select }, { prisma, user }): Promise<A
 
     return patients;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao buscar paciente');
   }
 };

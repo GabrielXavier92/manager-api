@@ -13,6 +13,7 @@ export type Scalars = {
 export type Query = {
   __typename?: 'Query';
   me: Account;
+  getUser: User;
   getDoctor: Doctor;
   getDoctors?: Maybe<Array<Doctor>>;
   getGuide: Guide;
@@ -134,9 +135,15 @@ export type User = {
   email?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
   gender?: Maybe<Gender>;
-  roles?: Maybe<Array<Scalars['String']>>;
+  roles?: Maybe<Array<Role>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type Role = {
+  __typename?: 'Role';
+  id: Scalars['ID'];
+  role: Scalars['String'];
 };
 
 export type DoctorInput = {

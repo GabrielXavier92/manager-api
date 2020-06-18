@@ -13,7 +13,6 @@ const getDoctors: Resolver = async (_, { select }, { prisma, user }): Promise<Ar
 
     return doctors;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao buscar profissionais');
   }
 };

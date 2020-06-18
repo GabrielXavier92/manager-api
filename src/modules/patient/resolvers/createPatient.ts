@@ -16,7 +16,6 @@ const createPatient: Resolver = async (_, { input, select }, { prisma, user }): 
     });
     return patient;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao criar paciente');
   }
 };

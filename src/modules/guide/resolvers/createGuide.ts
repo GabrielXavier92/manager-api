@@ -19,7 +19,6 @@ const createGuide: Resolver = async (_, { input, select }, { prisma, user }): Pr
     });
     return guide;
   } catch (e) {
-    console.error(e);
     throw new UserInputError('Falha ao criar guia');
   }
 };
