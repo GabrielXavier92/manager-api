@@ -4,6 +4,8 @@ import * as bcrypt from 'bcryptjs';
 import { Account } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
+import roles from '../../../constants/roles';
+
 const createAccount: Resolver = async (_, { input, fields }, { prisma }): Promise<Account> => {
   const {
     email, password, name, plan,
@@ -26,7 +28,7 @@ const createAccount: Resolver = async (_, { input, fields }, { prisma }): Promis
             password: hashPassword,
             name,
             roles: {
-              connect: [{ role: 'ADMIN' }],
+              connect: roles,
             },
           },
         },
