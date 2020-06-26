@@ -10,7 +10,8 @@
     "prisma-create-tables": "npx prisma migrate up --experimental",
     "prisma-generate-schemas": "npx prisma generate",
     "prisma-studio": "npx prisma studio --experimental",
-    "generate-types": "graphql-codegen"
+    "generate-types": "graphql-codegen",
+    "seed-database": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "Gabriel Xavier",
