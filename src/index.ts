@@ -1,5 +1,5 @@
-import { GraphQLModule } from '@graphql-modules/core';
 import 'dotenv/config';
+import { GraphQLModule } from '@graphql-modules/core';
 import { ApolloServer } from 'apollo-server';
 import Logger from '@est-normalis/simple-apollo-logger';
 
