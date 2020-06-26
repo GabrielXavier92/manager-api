@@ -16,7 +16,7 @@ const me: Resolver = async (_, { fields }, { prisma, user }): Promise<Account> =
       ...filterSelect,
     });
 
-    if (!account) throw new ForbiddenError('Failed to fetch user');
+    if (!account) throw new ForbiddenError('Failed to fetch account');
 
     return account;
   } catch (e) {
