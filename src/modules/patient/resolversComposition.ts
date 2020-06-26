@@ -1,4 +1,4 @@
-import authenticated from '../../utils/authenticated';
+import { authenticated } from '../../utils';
 
 const resolversComposition = {
   'Mutation.createPatient': [authenticated],

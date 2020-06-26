@@ -7,8 +7,7 @@ import {
   AccountModule, DoctorModule, GuideModule, PatientModule,
 } from './modules';
 
-import createContext from './utils/createContext';
-import addSelect from './utils/addSelect';
+import { addSelect, createContext } from './utils';
 
 const startServer = async () => {
   const AppModule = new GraphQLModule({
