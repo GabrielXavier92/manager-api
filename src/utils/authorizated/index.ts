@@ -6,7 +6,7 @@ export const authorizated = (role: string) => (next: any) => (
   context: any,
   info: any,
 ) => {
-  if (!context.currentUser.roles.includes(role)) {
+  if (!context.user.roles.includes(role)) {
     throw new ForbiddenError('Unauthorized!');
   }
 
