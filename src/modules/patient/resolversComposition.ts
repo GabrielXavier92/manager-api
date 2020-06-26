@@ -1,10 +1,10 @@
-import { authenticated } from '../../utils';
+import { authenticated, authorizated } from '../../utils';
 
 const resolversComposition = {
-  'Mutation.createPatient': [authenticated],
-  'Mutation.updatePatient': [authenticated],
-  'Query.getPatients': [authenticated],
-  'Query.getPatient': [authenticated],
+  'Query.getPatient': [authenticated, authorizated('GET_PATIENT')],
+  'Query.getPatients': [authenticated, authorizated('GET_PATIENTS')],
+  'Mutation.createPatient': [authenticated, authorizated('CREATE_PATIENT')],
+  'Mutation.updatePatient': [authenticated, authorizated('UPDATE_PATIENT')],
 };
 
 export default resolversComposition;
