@@ -61,6 +61,14 @@ model Doctor {
   gender Gender? // Enum
   birth DateTime?
   register String?
+  email String?
+  country String?
+  cep String?
+  state String?
+  city String?
+  street String?
+  neighborhood String?
+  complement String?
   guides Guide[] // Relacionamento com as guias
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

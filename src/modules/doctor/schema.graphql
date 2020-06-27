@@ -20,6 +20,14 @@ input DoctorInput {
   gender: Gender
   birth: DateTime
   register: String
+  email: String
+  country: String
+  cep: String
+  state: String
+  city: String
+  street: String
+  neighborhood: String
+  complement: String
 }
 
 
@@ -29,6 +37,14 @@ type Doctor {
   gender: Gender
   birth: DateTime
   register: String
+  email: String
+  country: String
+  cep: String
+  state: String
+  city: String
+  street: String
+  neighborhood: String
+  complement: String
   createdAt: DateTime
   updatedAt: DateTime
 }

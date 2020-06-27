@@ -151,6 +151,14 @@ export type DoctorInput = {
   gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;
   register?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  cep?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  neighborhood?: Maybe<Scalars['String']>;
+  complement?: Maybe<Scalars['String']>;
 };
 
 export type Doctor = {
@@ -160,6 +168,14 @@ export type Doctor = {
   gender?: Maybe<Gender>;
   birth?: Maybe<Scalars['DateTime']>;
   register?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  cep?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  city?: Maybe<Scalars['String']>;
+  street?: Maybe<Scalars['String']>;
+  neighborhood?: Maybe<Scalars['String']>;
+  complement?: Maybe<Scalars['String']>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   guides?: Maybe<Array<Maybe<Guide>>>;
