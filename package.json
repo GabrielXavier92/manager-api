@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=development nodemon --exec ts-node --files src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prisma-create-migrations": "npx prisma migrate save --name init --experimental",
-    "prisma-create-tables": "npx prisma migrate up --experimental",
+    "prisma-run-migrates": "npx prisma migrate up --experimental",
     "prisma-generate-schemas": "npx prisma generate",
     "prisma-studio": "npx prisma studio --experimental",
     "generate-types": "graphql-codegen",
