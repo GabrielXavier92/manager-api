@@ -11,6 +11,10 @@ const roles = [
   { role: 'GET_PATIENTS' },
   { role: 'CREATE_PATIENT' },
   { role: 'UPDATE_PATIENT' },
+  { role: 'GET_SPECIALTY' },
+  { role: 'GET_SPECIALTIES' },
+  { role: 'CREATE_SPECIALTY' },
+  { role: 'UPDATE_SPECIALTY' },
 ];
 
 export default roles;
