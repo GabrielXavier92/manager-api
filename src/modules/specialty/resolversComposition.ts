@@ -1,10 +1,10 @@
-// import { authenticated, authorizated } from '../../utils';
+import { authenticated, authorizated } from '../../utils';
 
 const resolversComposition = {
-  // 'Query.getDoctor': [authenticated, authorizated('GET_DOCTOR')],
-  // 'Query.getDoctors': [authenticated, authorizated('GET_DOCTORS')],
-  // 'Mutation.createDoctor': [authenticated, authorizated('CREATE_DOCTOR')],
-  // 'Mutation.updateDoctor': [authenticated, authorizated('UPDATE_DOCTOR')],
+  'Query.getSpecialty': [authenticated, authorizated('GET_SPECIALTY')],
+  'Query.getSpecialties': [authenticated, authorizated('GET_SPECIALTIES')],
+  'Mutation.createSpecialty': [authenticated, authorizated('CREATE_SPECIALTY')],
+  'Mutation.updateSpecialty': [authenticated, authorizated('UPDATE_SPECIALTY')],
 };
 
 export default resolversComposition;
