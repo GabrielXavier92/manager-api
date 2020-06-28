@@ -3,7 +3,7 @@ import { Patient } from '../../../types/types.d';
 
 import { Resolver } from '../../../types/graphql-utils';
 
-const updatePatient: Resolver = async (_, { id, input, select }, { prisma, user }): Promise<Patient> => {
+const updatePatient: Resolver = async (_, { id, input, fields }, { prisma, user }): Promise<Patient> => {
   try {
     const patient = await prisma.patient.findOne({
       where: {
@@ -20,7 +20,7 @@ const updatePatient: Resolver = async (_, { id, input, select }, { prisma, user 
       data: {
         ...input,
       },
-      ...select,
+      ...fields,
     });
 
     return updatedPatient;

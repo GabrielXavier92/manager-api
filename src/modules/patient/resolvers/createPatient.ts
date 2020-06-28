@@ -3,7 +3,7 @@ import { Patient } from '../../../types/types.d';
 
 import { Resolver } from '../../../types/graphql-utils';
 
-const createPatient: Resolver = async (_, { input, select }, { prisma, user }): Promise<Patient> => {
+const createPatient: Resolver = async (_, { input, fields }, { prisma, user }): Promise<Patient> => {
   try {
     const patient = await prisma.patient.create({
       data: {
@@ -12,7 +12,7 @@ const createPatient: Resolver = async (_, { input, select }, { prisma, user }): 
           connect: { id: user?.accountId },
         },
       },
-      ...select,
+      ...fields,
     });
     return patient;
   } catch (e) {

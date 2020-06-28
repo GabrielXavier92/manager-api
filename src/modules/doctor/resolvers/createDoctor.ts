@@ -3,7 +3,7 @@ import { UserInputError } from 'apollo-server';
 import { Resolver } from '../../../types/graphql-utils';
 import { Doctor } from '../../../types/types';
 
-const createDoctor: Resolver = async (_, { input, select }, { prisma, user }): Promise<Doctor> => {
+const createDoctor: Resolver = async (_, { input, fields }, { prisma, user }): Promise<Doctor> => {
   try {
     const doctor = await prisma.doctor.create({
       data: {
@@ -12,7 +12,7 @@ const createDoctor: Resolver = async (_, { input, select }, { prisma, user }): P
           connect: { id: user?.accountId },
         },
       },
-      ...select,
+      ...fields,
     });
     return doctor;
   } catch (e) {
