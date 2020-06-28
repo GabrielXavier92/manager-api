@@ -240,6 +240,7 @@ export type SpecialtyInput = {
 };
 
 export type ProcedureInput = {
+  id?: Maybe<Scalars['ID']>;
   name: Scalars['String'];
   code?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;

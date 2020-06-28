@@ -16,6 +16,7 @@ input SpecialtyInput {
 }
 
 input ProcedureInput {
+  id: ID
   name: String!
   code: String
   value: String
