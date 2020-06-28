@@ -5,6 +5,11 @@ const authenticated = (next: any) => (root: any, args: any, context: Context, in
   if (!context.user) {
     throw new AuthenticationError('Token Invalido ou nao fornecido');
   }
+  const { id, accountId, roles } = context.user;
+
+  if (!id || !accountId || !roles) {
+    throw new AuthenticationError('Token Invalido ou nao fornecido');
+  }
 
   return next(root, args, context, info);
 };
