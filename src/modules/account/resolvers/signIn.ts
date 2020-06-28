@@ -5,21 +5,14 @@ import * as jwt from 'jsonwebtoken';
 import { Resolver } from '../../../types/graphql-utils';
 import { LoginUser, Role } from '../../../types/types';
 
-const signIn: Resolver = async (_, { input, fields }, { prisma }): Promise<LoginUser> => {
+const signIn: Resolver = async (_, { input }, { prisma }): Promise<LoginUser> => {
   const { email, password } = input;
   try {
-    const filterUser = {
-      ...fields.select.user,
-    };
-    filterUser.select.password = true;
-
     const user = await prisma.user.findOne({
       where: {
         email,
       },
-      ...filterUser,
     });
-
 
     if (!user) throw new UserInputError('Falha ao realizar login, usuario nao encontrado.');
 
