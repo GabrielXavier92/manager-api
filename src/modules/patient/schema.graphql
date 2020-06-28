@@ -17,7 +17,7 @@ type Mutation {
 
 input PatientInput {
   name: String!
-  birth: DateTime
+  birth: String
   gender: Gender
 }
 
@@ -25,7 +25,7 @@ type Patient {
   id: ID!
   name: String!
   gender: Gender
-  birth: DateTime
+  birth: String
   createdAt: DateTime
   updatedAt: DateTime
 }
