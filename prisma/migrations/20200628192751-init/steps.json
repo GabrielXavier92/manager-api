@@ -1,0 +1,17 @@
+{
+  "version": "0.3.14-fixed",
+  "steps": [
+    {
+      "tag": "UpdateField",
+      "model": "Procedure",
+      "field": "code",
+      "arity": "Optional"
+    },
+    {
+      "tag": "UpdateField",
+      "model": "Procedure",
+      "field": "value",
+      "arity": "Optional"
+    }
+  ]
+}
