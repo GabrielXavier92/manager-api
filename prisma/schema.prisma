@@ -103,6 +103,11 @@ model Specialty {
   id String     @id @default(uuid())
   name String
   doctor Doctor[] // relacionamento com os dentistas
+  procedures Procedure[] // relacionamento com os procedimentos
+  account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
+  accountId String // Relacionamento com a conta 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model ProcedureTable {
