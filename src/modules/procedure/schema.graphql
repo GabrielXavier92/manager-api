@@ -1,0 +1,51 @@
+scalar DateTime
+
+type Query {
+  getProcedureTable(id: ID!): ProcedureTable!
+  getProcedureTables: [ProcedureTable!]
+  getProcedures(tableId: ID): [Procedure]
+  getProcedure(id: ID!): Procedure
+}
+
+type Mutation {
+  createProcedureTable(input: ProcedureTableInput!): ProcedureTable!
+  updateProcedureTable(id: ID!, input: ProcedureTableInput!): ProcedureTable!
+  createProcedure(input: ProcedureInput!): Procedure!
+  updateProcedure(id: ID!, input: ProcedureInput): Procedure!
+}
+
+input ProcedureTableInput {
+  name: String!
+  procedures: [ProcedureInput]
+}
+
+input ProcedureInput {
+  name: String!
+  code: String
+  value: String
+  specialtyId: ID!
+  procedureTableId: ID!
+}
+
+type ProcedureTable {
+  id: ID!
+  name: String!
+  procedures: [Procedure]
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Procedure {
+  id: ID!
+  name: String!
+  code: String
+  value: String
+  specialty: Specialty
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+type Specialty {
+  id: ID!
+  name: String
+}

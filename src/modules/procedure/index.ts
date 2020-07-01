@@ -5,12 +5,12 @@ import { join } from 'path';
 import resolvers from './resolvers';
 import resolversComposition from './resolversComposition';
 
-const SpecialtyModule = new GraphQLModule({
-  name: 'SpecialtyModule',
+const ProcedureModule = new GraphQLModule({
+  name: 'ProcedureModule',
   typeDefs: importSchema(join(__dirname, 'schema.graphql')),
   resolvers,
   context: (context) => context,
   resolversComposition,
 });
 
-export default SpecialtyModule;
+export default ProcedureModule;

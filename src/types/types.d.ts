@@ -20,8 +20,10 @@ export type Query = {
   getGuides?: Maybe<Array<Guide>>;
   getPatient: Patient;
   getPatients?: Maybe<Array<Patient>>;
-  getSpecialty: Specialty;
-  getSpecialties?: Maybe<Array<Specialty>>;
+  getProcedureTable: ProcedureTable;
+  getProcedureTables?: Maybe<Array<ProcedureTable>>;
+  getProcedures?: Maybe<Array<Maybe<Procedure>>>;
+  getProcedure?: Maybe<Procedure>;
 };
 
 
@@ -40,7 +42,17 @@ export type QueryGetPatientArgs = {
 };
 
 
-export type QueryGetSpecialtyArgs = {
+export type QueryGetProcedureTableArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetProceduresArgs = {
+  tableId?: Maybe<Scalars['ID']>;
+};
+
+
+export type QueryGetProcedureArgs = {
   id: Scalars['ID'];
 };
 
@@ -54,8 +66,10 @@ export type Mutation = {
   updateGuides: Guide;
   createPatient: Patient;
   updatePatient: Patient;
-  createSpecialty: Specialty;
-  updateSpecialty: Specialty;
+  createProcedureTable: ProcedureTable;
+  updateProcedureTable: ProcedureTable;
+  createProcedure: Procedure;
+  updateProcedure: Procedure;
 };
 
 
@@ -102,14 +116,25 @@ export type MutationUpdatePatientArgs = {
 };
 
 
-export type MutationCreateSpecialtyArgs = {
-  input: SpecialtyInput;
+export type MutationCreateProcedureTableArgs = {
+  input: ProcedureTableInput;
 };
 
 
-export type MutationUpdateSpecialtyArgs = {
+export type MutationUpdateProcedureTableArgs = {
   id: Scalars['ID'];
-  input: SpecialtyInput;
+  input: ProcedureTableInput;
+};
+
+
+export type MutationCreateProcedureArgs = {
+  input: ProcedureInput;
+};
+
+
+export type MutationUpdateProcedureArgs = {
+  id: Scalars['ID'];
+  input?: Maybe<ProcedureInput>;
 };
 
 export type Gender = 
@@ -234,20 +259,21 @@ export type PatientInput = {
   gender?: Maybe<Gender>;
 };
 
-export type SpecialtyInput = {
+export type ProcedureTableInput = {
   name: Scalars['String'];
   procedures?: Maybe<Array<Maybe<ProcedureInput>>>;
 };
 
 export type ProcedureInput = {
-  id?: Maybe<Scalars['ID']>;
   name: Scalars['String'];
   code?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
+  specialtyId: Scalars['ID'];
+  procedureTableId: Scalars['ID'];
 };
 
-export type Specialty = {
-  __typename?: 'Specialty';
+export type ProcedureTable = {
+  __typename?: 'ProcedureTable';
   id: Scalars['ID'];
   name: Scalars['String'];
   procedures?: Maybe<Array<Maybe<Procedure>>>;
@@ -264,5 +290,11 @@ export type Procedure = {
   specialty?: Maybe<Specialty>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type Specialty = {
+  __typename?: 'Specialty';
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
 };
 
