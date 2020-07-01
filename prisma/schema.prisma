@@ -14,7 +14,6 @@ enum Plan {
   STARTER
 }
 
-
 model Account {
   id String          @id @default(uuid())
   plan Plan @default(STARTER)
@@ -101,11 +100,18 @@ model Guide {
 }
 
 model Specialty {
+  id String     @id @default(uuid())
+  name String
+  doctor Doctor[] // relacionamento com os dentistas
+}
+
+model ProcedureTable {
   id String          @id @default(uuid())
   account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
-  accountId String // Relacionamento com a conta
+  accountId String // Relacionamento com a conta  
   name String
-  procedures Procedure[]
+  procedures Procedure[] // Relacionamento com os procedimentos
+  isDefault Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -117,8 +123,10 @@ model Procedure {
   name String
   code String?
   value String?
+  procedureTable ProcedureTable @relation(fields: [procedureTableId], references: [id]) // Relacionamento com uma tabela
+  procedureTableId String  // Relacionamento com uma tabela
   specialty Specialty @relation(fields: [specialtyId], references: [id]) // Relacionamento com uma especialidade
-  specialtyId String  // Relacionamento com uma especialidade
+  specialtyId String // Relacionamento com uma especialidade
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
