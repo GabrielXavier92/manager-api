@@ -11,10 +11,14 @@ const roles = [
   { role: 'GET_PATIENTS' },
   { role: 'CREATE_PATIENT' },
   { role: 'UPDATE_PATIENT' },
-  { role: 'GET_SPECIALTY' },
-  { role: 'GET_SPECIALTIES' },
-  { role: 'CREATE_SPECIALTY' },
-  { role: 'UPDATE_SPECIALTY' },
+  { role: 'GET_PROCEDURE_TABLE' },
+  { role: 'GET_PROCEDURE_TABLES' },
+  { role: 'CREATE_PROCEDURE_TABLE' },
+  { role: 'UPDATE_PROCEDURE_TABLE' },
+  { role: 'GET_PROCEDURE' },
+  { role: 'GET_PROCEDURES' },
+  { role: 'CREATE_PROCEDURE' },
+  { role: 'UPDATE_PROCEDURE' },
 ];
 
 export default roles;
