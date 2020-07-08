@@ -1,4 +1,4 @@
-import { UserInputError } from 'apollo-server';
+import { ForbiddenError } from 'apollo-server';
 import { Patient } from '../../../types/types.d';
 import { Resolver } from '../../../types/graphql-utils';
 
@@ -13,7 +13,7 @@ const getPatients: Resolver = async (_, { fields }, { prisma, user }): Promise<A
 
     return patients;
   } catch (e) {
-    throw new UserInputError('Falha ao buscar paciente');
+    throw new ForbiddenError('Falha ao buscar paciente');
   }
 };
 

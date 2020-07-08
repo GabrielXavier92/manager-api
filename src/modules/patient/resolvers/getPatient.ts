@@ -1,4 +1,4 @@
-import { UserInputError } from 'apollo-server';
+import { ForbiddenError } from 'apollo-server';
 import { Patient } from '../../../types/types.d';
 import { Resolver } from '../../../types/graphql-utils';
 
@@ -11,11 +11,11 @@ const getPatient: Resolver = async (_, { id, fields }, { prisma, user }): Promis
       ...fields,
     });
 
-    if (!patient || patient.accountId !== user?.accountId) throw new UserInputError('Paciente não encontrado ou token invalido');
+    if (!patient || patient.accountId !== user?.accountId) throw new ForbiddenError('Paciente não encontrado ou token invalido');
 
     return patient;
   } catch (e) {
-    throw new UserInputError('Falha ao buscar profissional');
+    throw new ForbiddenError('Falha ao buscar profissional');
   }
 };
 
