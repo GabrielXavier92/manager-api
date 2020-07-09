@@ -22,8 +22,10 @@ export type Query = {
   getPatients?: Maybe<Array<Patient>>;
   getProcedureTable: ProcedureTable;
   getProcedureTables?: Maybe<Array<ProcedureTable>>;
-  getProcedures?: Maybe<Array<Maybe<Procedure>>>;
+  getProcedures?: Maybe<GetProcedures>;
   getProcedure?: Maybe<Procedure>;
+  getSpecialty: Specialty;
+  getSpecialties?: Maybe<Array<Specialty>>;
 };
 
 
@@ -48,11 +50,19 @@ export type QueryGetProcedureTableArgs = {
 
 
 export type QueryGetProceduresArgs = {
-  tableId?: Maybe<Scalars['ID']>;
+  procedureTableId: Scalars['ID'];
+  take: Scalars['Int'];
+  cursor?: Maybe<Scalars['ID']>;
+  filter?: Maybe<Scalars['String']>;
 };
 
 
 export type QueryGetProcedureArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryGetSpecialtyArgs = {
   id: Scalars['ID'];
 };
 
@@ -70,6 +80,8 @@ export type Mutation = {
   updateProcedureTable: ProcedureTable;
   createProcedure: Procedure;
   updateProcedure: Procedure;
+  createSpecialty: Specialty;
+  updateSpecialty: Specialty;
 };
 
 
@@ -135,6 +147,17 @@ export type MutationCreateProcedureArgs = {
 export type MutationUpdateProcedureArgs = {
   id: Scalars['ID'];
   input?: Maybe<ProcedureInput>;
+};
+
+
+export type MutationCreateSpecialtyArgs = {
+  input: SpecialtyInput;
+};
+
+
+export type MutationUpdateSpecialtyArgs = {
+  id: Scalars['ID'];
+  input?: Maybe<SpecialtyInput>;
 };
 
 export type Gender = 
@@ -272,6 +295,10 @@ export type ProcedureInput = {
   procedureTableId: Scalars['ID'];
 };
 
+export type SpecialtyInput = {
+  name: Scalars['String'];
+};
+
 export type ProcedureTable = {
   __typename?: 'ProcedureTable';
   id: Scalars['ID'];
@@ -288,8 +315,15 @@ export type Procedure = {
   code?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
   specialty?: Maybe<Specialty>;
+  procedureTable?: Maybe<ProcedureTable>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type GetProcedures = {
+  __typename?: 'GetProcedures';
+  ammount: Scalars['Int'];
+  procedures?: Maybe<Array<Maybe<Procedure>>>;
 };
 
 export type Specialty = {
