@@ -8,18 +8,21 @@ const getProcedures: Resolver = async (_, {
   filter, fields,
 }, { prisma, user }): Promise<GetProcedures> => {
   try {
-    const procedures = await prisma.procedure.findMany({
-      take,
-      skip: cursor ? 1 : 0,
-      cursor: cursor ? { id: cursor } : undefined,
-      where: {
-        accountId: user?.accountId,
-        procedureTableId,
-        name: { contains: filter },
-      },
-      orderBy: { name: 'asc' },
-      ...fields.select.procedures,
-    });
+    let procedures;
+    if (fields.select.procedures) {
+      procedures = await prisma.procedure.findMany({
+        take,
+        skip: cursor ? 1 : 0,
+        cursor: cursor ? { id: cursor } : undefined,
+        where: {
+          accountId: user?.accountId,
+          procedureTableId,
+          name: { contains: filter },
+        },
+        orderBy: { name: 'asc' },
+        ...fields.select.procedures,
+      });
+    }
 
     let ammount = 0;
     if (fields.select.ammount) {
