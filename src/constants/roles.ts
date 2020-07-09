@@ -19,6 +19,10 @@ const roles = [
   { role: 'GET_PROCEDURES' },
   { role: 'CREATE_PROCEDURE' },
   { role: 'UPDATE_PROCEDURE' },
+  { role: 'GET_SPECIALTY' },
+  { role: 'GET_SPECIALTIES' },
+  { role: 'CREATE_SPECIALTY' },
+  { role: 'UPDATE_SPECIALTY' },
 ];
 
 export default roles;
