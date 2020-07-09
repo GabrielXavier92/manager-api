@@ -1,6 +1,7 @@
 const defaultSpecialties = [
   {
-    specialty: { name: 'DIAGNOSIS' },
+    // specialty: { name: 'DIAGNOSIS' },
+    specialty: { name: 'DIAGNÓSTICA' },
     procedures: [
       { code: '81000065', name: 'Consulta Odontológica Inicial' },
       { code: '81000049', name: 'Consulta Odontológica de Urgência' },
@@ -8,7 +9,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'RADIOLOGY' },
+    // specialty: { name: 'RADIOLOGY' },
+    specialty: { name: 'RADIOLOGIA' },
     procedures: [
       { code: '81000421', name: 'Radiografia Periapical' },
       { code: '81000375', name: 'Radiografia Interproximal–Bite-Wing' },
@@ -27,7 +29,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'PREVENTION' },
+    // specialty: { name: 'PREVENTION' },
+    specialty: { name: 'PREVENÇÃo' },
     procedures: [
       { code: '84000198', name: 'Profilaxia–Polimento Coronário' },
       { code: '84000090', name: 'AplicaçãoTópica de Flúor' },
@@ -36,7 +39,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'PEDIATRICS' },
+    // specialty: { name: 'PEDIATRICS' },
+    specialty: { name: 'PEDIATRIA' },
     procedures: [
       { code: '84000112', name: 'Aplicação Tópica de Verniz Fluoretado' },
       { code: '84000074', name: 'Aplicação de Selante de Fossulas e Fissuras' },
@@ -56,7 +60,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'DENTIST' },
+    // specialty: { name: 'DENTIST' },
+    specialty: { name: 'DENTISTICA' },
     procedures: [
       { code: '85100099', name: 'Restauração de Amálgama – 1 face' },
       { code: '85100102', name: 'Restauração de Amálgama – 2 faces' },
@@ -74,7 +79,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'ENDODONTICS' },
+    // specialty: { name: 'ENDODONTICS' },
+    specialty: { name: 'ENDODONTIA' },
     procedures: [
       { code: '85200166', name: 'Tratamento Endodôntico Unirradicular' },
       { code: '85200140', name: 'Tratamento Endodôntico Birradicular' },
@@ -95,7 +101,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'PERIODONTICS' },
+    // specialty: { name: 'PERIODONTICS' },
+    specialty: { name: 'PERIODONTIA' },
     procedures: [
       { code: '85300039', name: 'Raspagem Sub - Gengival / Alisamento Radicular' },
       { code: '90080511', name: 'Tratamento não cirúrgico da Periodontite avançada p / seguimento' },
@@ -114,7 +121,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'PROSTHESIS' },
+    // specialty: { name: 'PROSTHESIS' },
+    specialty: { name: 'PRÓTESE' },
     procedures: [
       { code: '90090610', name: 'Planejamento em Prótese' },
       { code: '81000243', name: 'Diagnóstico por meio de encerramento' },
@@ -156,7 +164,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'SURGERY' },
+    // specialty: { name: 'SURGERY' },
+    specialty: { name: 'CIRURGIA' },
     procedures: [
       { code: '82000298', name: 'Bridectomia' },
       { code: '82000026', name: 'Acompanhamento de Tratamento/Procedimento Cirúrgico em Ontologia' },
@@ -192,7 +201,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'ORTHODONTICS' },
+    // specialty: { name: 'Orthodontics' },
+    specialty: { name: 'ORTODONTIA' },
     procedures: [
       { code: '86000098', name: 'Aparelho Ortodôntico Fixo' },
       { code: '90110814', name: 'Anéis ortodônticos c / gancho' },
@@ -234,7 +244,8 @@ const defaultSpecialties = [
     ],
   },
   {
-    specialty: { name: 'IMPLANTOLOGY' },
+    // specialty: { name: 'IMPLANTOLOGY' },
+    specialty: { name: 'IMPLANTOLOGIA' },
     procedures: [
       { code: '82000980', name: 'Implante Ósseo Integrado' },
       { code: '85500038', name: 'Coroa Total Metalo - Cerâmica sobre Implante' },
