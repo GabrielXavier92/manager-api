@@ -15,7 +15,7 @@ const getProcedureTable: Resolver = async (_, { id, fields }, { prisma, user }):
 
     return procedureTable;
   } catch (e) {
-    throw new ForbiddenError('Falha ao buscar tabela de procedinento');
+    throw new ForbiddenError('Falha ao buscar tabela de procedimento');
   }
 };
 
