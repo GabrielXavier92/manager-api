@@ -3,7 +3,7 @@ scalar DateTime
 type Query {
   getProcedureTable(id: ID!): ProcedureTable!
   getProcedureTables: [ProcedureTable!]
-  getProcedures(procedureTableId: ID!, take: Int!, cursor: ID, filter: String): GetProcedures
+  getProcedures(procedureTableId: ID!, take: Int, cursor: ID, filter: String): GetProcedures
   getProcedure(id: ID!): Procedure
   getSpecialty(id: ID!): Specialty!
   getSpecialties: [Specialty!]
@@ -20,7 +20,6 @@ type Mutation {
 
 input ProcedureTableInput {
   name: String!
-  procedures: [ProcedureInput]
 }
 
 input ProcedureInput {
@@ -54,12 +53,15 @@ type Procedure {
   updatedAt: DateTime
 }
 
+type QueryInfo {
+  ammount: Int
+}
 type GetProcedures {
-  ammount: Int!
+  queryInfo: QueryInfo
   procedures: [Procedure]
 }
 
 type Specialty {
   id: ID!
-  name: String
+  name: String!
 }

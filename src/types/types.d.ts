@@ -51,7 +51,7 @@ export type QueryGetProcedureTableArgs = {
 
 export type QueryGetProceduresArgs = {
   procedureTableId: Scalars['ID'];
-  take: Scalars['Int'];
+  take?: Maybe<Scalars['Int']>;
   cursor?: Maybe<Scalars['ID']>;
   filter?: Maybe<Scalars['String']>;
 };
@@ -284,7 +284,6 @@ export type PatientInput = {
 
 export type ProcedureTableInput = {
   name: Scalars['String'];
-  procedures?: Maybe<Array<Maybe<ProcedureInput>>>;
 };
 
 export type ProcedureInput = {
@@ -320,15 +319,20 @@ export type Procedure = {
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
+export type QueryInfo = {
+  __typename?: 'QueryInfo';
+  ammount?: Maybe<Scalars['Int']>;
+};
+
 export type GetProcedures = {
   __typename?: 'GetProcedures';
-  ammount: Scalars['Int'];
+  queryInfo?: Maybe<QueryInfo>;
   procedures?: Maybe<Array<Maybe<Procedure>>>;
 };
 
 export type Specialty = {
   __typename?: 'Specialty';
   id: Scalars['ID'];
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
