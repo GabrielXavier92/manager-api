@@ -4,7 +4,7 @@ import { ApolloServer } from 'apollo-server';
 import Logger from '@est-normalis/simple-apollo-logger';
 
 import {
-  AccountModule, DoctorModule, GuideModule, PatientModule, ProcedureModule,
+  AccountModule, DoctorModule, GuideModule, PatientModule, ProcedureModule, ScheduleModule,
 } from './modules';
 
 import { addSelect, createContext } from './utils';
@@ -12,7 +12,7 @@ import { addSelect, createContext } from './utils';
 const startServer = async () => {
   const AppModule = new GraphQLModule({
     name: 'AppModule',
-    imports: [AccountModule, DoctorModule, GuideModule, PatientModule, ProcedureModule],
+    imports: [AccountModule, DoctorModule, GuideModule, PatientModule, ProcedureModule, ScheduleModule],
     resolversComposition: {
       Query: [addSelect],
       Mutation: [addSelect],
