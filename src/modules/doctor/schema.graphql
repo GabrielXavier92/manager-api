@@ -28,8 +28,13 @@ input DoctorInput {
   street: String
   neighborhood: String
   complement: String
+  specialties: [Specialties]
 }
 
+input Specialties {
+  id: String!
+  name: String
+}
 
 type Doctor {
   id: ID!
@@ -45,6 +50,12 @@ type Doctor {
   street: String
   neighborhood: String
   complement: String
+  specialties: [Specialty]
   createdAt: DateTime
   updatedAt: DateTime
+}
+
+type Specialty {
+  id: ID!
+  name: String!
 }
