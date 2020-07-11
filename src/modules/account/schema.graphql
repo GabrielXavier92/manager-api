@@ -2,7 +2,7 @@ scalar DateTime
 
 type Query {
   me: Account!
-  getUser: User!
+  user: User!
 }
 
 type Mutation {

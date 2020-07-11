@@ -1,5 +1,5 @@
 import { ForbiddenError } from 'apollo-server';
-import { Specialty } from '../../../types/types.d';
+import { Specialty } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
 const getSpecialties: Resolver = async (_, { fields }, { prisma, user }): Promise<Array<Specialty>> => {

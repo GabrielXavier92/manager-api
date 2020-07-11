@@ -1,5 +1,5 @@
 import { ForbiddenError } from 'apollo-server';
-import { ProcedureTable } from '../../../types/types.d';
+import { ProcedureTable } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
 const getProcedureTable: Resolver = async (_, { id, fields }, { prisma, user }): Promise<ProcedureTable> => {

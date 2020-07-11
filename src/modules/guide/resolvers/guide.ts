@@ -1,5 +1,5 @@
 import { UserInputError } from 'apollo-server';
-import { Guide } from '../../../types/types.d';
+import { Guide } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
 const getGuide: Resolver = async (_, { id, select }, { prisma, user }): Promise<Guide> => {

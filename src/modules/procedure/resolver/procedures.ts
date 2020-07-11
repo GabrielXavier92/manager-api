@@ -1,5 +1,5 @@
 import { ForbiddenError } from 'apollo-server';
-import { GetProcedures } from '../../../types/types.d';
+import { GetProcedures } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
 const getProcedures: Resolver = async (_, {

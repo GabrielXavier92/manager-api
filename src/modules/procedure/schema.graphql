@@ -1,12 +1,12 @@
 scalar DateTime
 
 type Query {
-  getProcedureTable(id: ID!): ProcedureTable!
-  getProcedureTables: [ProcedureTable!]
-  getProcedures(procedureTableId: ID!, take: Int, cursor: ID, filter: String): GetProcedures
-  getProcedure(id: ID!): Procedure
-  getSpecialty(id: ID!): Specialty!
-  getSpecialties: [Specialty!]
+  procedureTable(id: ID!): ProcedureTable!
+  procedureTables: [ProcedureTable!]
+  procedures(procedureTableId: ID!, take: Int, cursor: ID, filter: String): GetProcedures
+  procedure(id: ID!): Procedure
+  specialty(id: ID!): Specialty!
+  specialties: [Specialty!]
 }
 
 type Mutation {

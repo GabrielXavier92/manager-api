@@ -1,31 +1,31 @@
 import { ResolverMap } from '../../types/graphql-utils';
 
-import getProcedureTable from './resolver/getProcedureTable';
-import getProcedureTables from './resolver/getProcedureTables';
+import procedureTable from './resolver/procedureTable';
+import procedureTables from './resolver/procedureTables';
 import createProcedureTable from './resolver/createProcedureTable';
 import updateProcedureTable from './resolver/updateProcedureTable';
 
-import getProcedure from './resolver/getProcedure';
-import getProcedures from './resolver/getProcedures';
+import procedure from './resolver/procedure';
+import procedures from './resolver/procedures';
 import createProcedure from './resolver/createProcedure';
 import updateProcedure from './resolver/updateprocedure';
 
-import getSpecialty from './resolver/getSpecialty';
-import getSpecialties from './resolver/getSpecialties';
+import specialty from './resolver/specialty';
+import specialties from './resolver/specialties';
 import createSpecialty from './resolver/createSpecialty';
 import updateSpecialty from './resolver/updateSpecialty';
 
 const Resolver: ResolverMap = {
   Query: {
     // Tabela
-    getProcedureTable,
-    getProcedureTables,
+    procedureTable,
+    procedureTables,
     // Procedimentos
-    getProcedures,
-    getProcedure,
+    procedures,
+    procedure,
     // Especialidades
-    getSpecialty,
-    getSpecialties,
+    specialty,
+    specialties,
   },
   Mutation: {
     // Tabela

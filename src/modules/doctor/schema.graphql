@@ -6,8 +6,8 @@ enum Gender {
 }
 
 type Query {
-  getDoctor(id: ID!): Doctor!
-  getDoctors: [Doctor!]
+  doctor(id: ID!): Doctor!
+  doctors: [Doctor!]
 }
 
 type Mutation {

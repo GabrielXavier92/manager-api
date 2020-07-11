@@ -1,5 +1,5 @@
 import { ForbiddenError } from 'apollo-server';
-import { Patient } from '../../../types/types.d';
+import { Patient } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
 const getPatients: Resolver = async (_, { fields }, { prisma, user }): Promise<Array<Patient>> => {

@@ -6,8 +6,8 @@ enum Gender {
 }
 
 type Query {
-  getGuide(id: ID!): Guide!
-  getGuides: [Guide!]
+  guide(id: ID!): Guide!
+  guides: [Guide!]
 }
 
 type Mutation {

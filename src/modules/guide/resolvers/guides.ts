@@ -1,5 +1,5 @@
 import { ForbiddenError } from 'apollo-server';
-import { Guide } from '../../../types/types.d';
+import { Guide } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
 const getGuides: Resolver = async (_, { select }, { prisma, user }): Promise<Array<Guide>> => {

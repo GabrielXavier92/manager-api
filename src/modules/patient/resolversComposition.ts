@@ -1,8 +1,8 @@
 import { authenticated, authorizated } from '../../utils';
 
 const resolversComposition = {
-  'Query.getPatient': [authenticated, authorizated('GET_PATIENT')],
-  'Query.getPatients': [authenticated, authorizated('GET_PATIENTS')],
+  'Query.patient': [authenticated, authorizated('GET_PATIENT')],
+  'Query.patients': [authenticated, authorizated('GET_PATIENTS')],
   'Mutation.createPatient': [authenticated, authorizated('CREATE_PATIENT')],
   'Mutation.updatePatient': [authenticated, authorizated('UPDATE_PATIENT')],
 };
