@@ -5,12 +5,15 @@ import { Doctor } from '../../../types/types';
 
 const createDoctor: Resolver = async (_, { input, fields }, { prisma, user }): Promise<Doctor> => {
   try {
+    let specialties;
+    if (input?.specialties) {
+      specialties = input?.specialties!.map((specialty: any) => ({ id: specialty.id }));
+    }
     const doctor = await prisma.doctor.create({
       data: {
         ...input,
-        account: {
-          connect: { id: user?.accountId },
-        },
+        specialties: { connect: specialties },
+        account: { connect: { id: user?.accountId } },
       },
       ...fields,
     });

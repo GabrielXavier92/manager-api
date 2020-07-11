@@ -9,9 +9,13 @@ const updateDoctor: Resolver = async (_, { id, input, fields }, { prisma, user }
       where: {
         id,
       },
+      include: { specialties: true },
     });
 
     if (!doctor || doctor.accountId !== user?.accountId) throw new UserInputError('Usuario não encontrado ou token invalido');
+
+    const disconnectSpecialties = doctor.specialties.filter((spec) => !input.specialties?.some((newSpec: any) => spec.id === newSpec.id)).map((spec) => ({ id: spec.id }));
+    const specialties = input?.specialties?.map((spec: any) => ({ id: spec.id }));
 
     const updatedDoctor = await prisma.doctor.update({
       where: {
@@ -19,6 +23,10 @@ const updateDoctor: Resolver = async (_, { id, input, fields }, { prisma, user }
       },
       data: {
         ...input,
+        specialties: {
+          disconnect: disconnectSpecialties?.length > 0 ? disconnectSpecialties : undefined,
+          connect: specialties?.length > 0 ? specialties : undefined,
+        },
       },
       ...fields,
     });
