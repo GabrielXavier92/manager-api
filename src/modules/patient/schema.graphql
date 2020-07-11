@@ -7,7 +7,7 @@ enum Gender {
 
 type Query {
   patient(id: ID!): Patient!
-  patients: [Patient!]
+  patients(take: Int, cursor: ID, filter: String): GetPatients
 }
 
 type Mutation {
@@ -19,6 +19,23 @@ input PatientInput {
   name: String!
   birth: String
   gender: Gender
+  email: String
+  country: String
+  cep: String
+  state: String
+  city: String
+  street: String
+  neighborhood: String
+  complement: String
+}
+
+type QueryInfo {
+  ammount: Int
+}
+
+type GetPatients {
+  queryInfo: QueryInfo
+  patients: [Patient]
 }
 
 type Patient {
@@ -26,6 +43,14 @@ type Patient {
   name: String!
   gender: Gender
   birth: String
+  email: String
+  country: String
+  cep: String
+  state: String
+  city: String
+  street: String
+  neighborhood: String
+  complement: String
   createdAt: DateTime
   updatedAt: DateTime
 }
