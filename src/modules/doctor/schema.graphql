@@ -32,7 +32,7 @@ input DoctorInput {
 }
 
 input Specialties {
-  id: String!
+  id: ID!
   name: String
 }
 
