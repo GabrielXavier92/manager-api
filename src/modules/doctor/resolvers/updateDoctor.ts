@@ -25,7 +25,7 @@ const updateDoctor: Resolver = async (_, { id, input, fields }, { prisma, user }
         ...input,
         specialties: {
           disconnect: disconnectSpecialties?.length > 0 ? disconnectSpecialties : undefined,
-          connect: specialties?.length > 0 ? specialties : undefined,
+          connect: specialties?.length! > 0 ? specialties : undefined,
         },
       },
       ...fields,
