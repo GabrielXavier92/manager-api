@@ -399,10 +399,16 @@ export type GetProcedures = {
 };
 
 export type ScheduleInput = {
-  doctor?: Maybe<ScheduleDoctorInput>;
-  patient?: Maybe<SchedulePatientInput>;
+  title: Scalars['String'];
+  start: Scalars['String'];
+  end: Scalars['String'];
+  resources: ScheduleResourcesInput;
+};
+
+export type ScheduleResourcesInput = {
+  doctor: ScheduleDoctorInput;
+  patient: SchedulePatientInput;
   procedures?: Maybe<Array<Maybe<ScheduleProceduresInput>>>;
-  time: Scalars['String'];
   comments?: Maybe<Scalars['String']>;
 };
 
@@ -424,12 +430,19 @@ export type ScheduleProceduresInput = {
 export type Schedule = {
   __typename?: 'Schedule';
   id: Scalars['ID'];
+  title: Scalars['String'];
+  start: Scalars['String'];
+  end: Scalars['String'];
+  resources?: Maybe<ScheduleResources>;
+  createdAt?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['String']>;
+};
+
+export type ScheduleResources = {
+  __typename?: 'ScheduleResources';
   doctor: Doctor;
   patient: Patient;
   procedures?: Maybe<Array<Maybe<Procedure>>>;
-  time: Scalars['String'];
   comments?: Maybe<Scalars['String']>;
-  createdAt?: Maybe<Scalars['String']>;
-  updatedAt?: Maybe<Scalars['String']>;
 };
 
