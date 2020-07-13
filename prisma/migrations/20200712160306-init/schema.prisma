@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -155,7 +155,6 @@ model Schedule {
   patientId String // Relacionamento com um Patient
   procedures Procedure[] @relation(references: [id])
   start String
-  title String
   end String
   comments String?
   createdAt DateTime @default(now())
