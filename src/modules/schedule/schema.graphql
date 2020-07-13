@@ -1,3 +1,71 @@
 type Query {
-  teste: String
+  # schedule(id: ID!): Schedule
+  schedules(start: String!, end: String!): [Schedule]
+}
+
+type Mutation {
+  createSchedule(input: ScheduleInput!): Schedule
+  updateSchedule(id: ID!, input: ScheduleInput!): Schedule
+}
+
+input ScheduleInput {
+  title: String!
+  start: String!
+  end: String!
+  resources: ScheduleResourcesInput!
+}
+
+input ScheduleResourcesInput {
+  doctor: ScheduleDoctorInput!
+  patient: SchedulePatientInput!
+  procedures: [ScheduleProceduresInput]
+  comments: String
+}
+
+input ScheduleDoctorInput {
+  id: ID!
+  name: String
+}
+
+input SchedulePatientInput {
+  id: ID!
+  name: String
+}
+
+input ScheduleProceduresInput {
+  id: ID!
+  name: String
+}
+
+type Schedule {
+  id: ID!
+  title: String!
+  start: String!
+  end: String!
+  resources: ScheduleResources  
+  createdAt: String
+  updatedAt: String
+}
+
+type ScheduleResources {
+  doctor: Doctor!
+  patient: Patient!
+  procedures: [Procedure]
+  comments: String
+}
+
+type Doctor {
+  id: ID!
+  name: String!
+}
+
+type Patient {
+  id: ID!
+  name: String!
+}
+
+type Procedure {
+  id: ID!
+  name: String!
+  code: String
 }
