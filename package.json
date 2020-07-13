@@ -12,6 +12,7 @@
     "prisma-create-migrations": "npx prisma migrate save --name init --experimental",
     "prisma-run-migrates": "npx prisma migrate up --experimental",
     "prisma-generate-schemas": "npx prisma generate",
+    "prisma": "yarn prisma-create-migrations && yarn prisma-run-migrates && yarn prisma-generate-schemas",
     "prisma-studio": "npx prisma studio --experimental",
     "generate-types": "graphql-codegen",
     "seed-database": "ts-node prisma/seed.ts"
