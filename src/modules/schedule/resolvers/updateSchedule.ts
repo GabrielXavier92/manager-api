@@ -57,7 +57,6 @@ const updateSchedule: Resolver = async (_, { id, input }: { id: string, input: S
 
     return updatedSchedule;
   } catch (e) {
-    console.log(e);
     throw new UserInputError('Falha ao atualizar agendamento');
   }
 };

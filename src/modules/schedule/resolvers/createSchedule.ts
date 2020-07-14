@@ -23,7 +23,6 @@ const createSchedule: Resolver = async (_, { input }: { input: ScheduleInput}, {
         account: { connect: { id: user?.accountId } },
       },
       include: { doctor: true, patient: true, procedures: true },
-      // ...fields,
     });
 
     // Transforma o dado para o front receber tudo pronto
@@ -42,7 +41,6 @@ const createSchedule: Resolver = async (_, { input }: { input: ScheduleInput}, {
 
     return schedule;
   } catch (e) {
-    console.log(e);
     throw new UserInputError('Falha ao criar agendamento');
   }
 };

@@ -16,7 +16,6 @@ const getSchedules: Resolver = async (_, { start, end }, { prisma, user }): Prom
       include: { doctor: true, patient: true, procedures: true },
     });
 
-    console.log(getedSchedules);
     const schedules = getedSchedules?.map((schedule) => ({
       id: schedule.id,
       title: schedule.title!,
@@ -30,10 +29,8 @@ const getSchedules: Resolver = async (_, { start, end }, { prisma, user }): Prom
       },
     }));
 
-    console.log(schedules);
     return schedules;
   } catch (e) {
-    console.log(e);
     throw new UserInputError('Falha ao buscar agendamentos');
   }
 };

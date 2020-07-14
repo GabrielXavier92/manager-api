@@ -3,7 +3,9 @@ import { PrismaClient } from '@prisma/client';
 import { Context } from '../../types/graphql-utils.d';
 import decodeJWT from '../decodeJWT';
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ['info', 'warn', 'error'],
+});
 
 export interface ISession {
   req: Request;
