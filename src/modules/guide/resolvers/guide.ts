@@ -2,13 +2,15 @@ import { UserInputError } from 'apollo-server';
 import { Guide } from '../../../types/types';
 import { Resolver } from '../../../types/graphql-utils';
 
-const getGuide: Resolver = async (_, { id, select }, { prisma, user }): Promise<Guide> => {
+const getGuide: Resolver = async (_, { id }, { prisma, user }): Promise<Guide> => {
   try {
     const guide = await prisma.guide.findOne({
       where: {
         id,
       },
-      ...select,
+      include: {
+        doctor: true, patient: true, procedureTable: true, proceduresGuide: { include: { procedure: true } },
+      },
     });
 
     if (!guide || guide.accountId !== user?.accountId) throw new UserInputError('Guia não encontrada ou token invalido');

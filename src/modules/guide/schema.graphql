@@ -7,33 +7,97 @@ enum Gender {
 
 type Query {
   guide(id: ID!): Guide!
-  guides: [Guide!]
+  guides(take: Int, cursor: ID, filter: String): GetGuide
 }
 
 type Mutation {
   createGuide(input: GuideInput!): Guide!
-  updateGuides(id: ID!, input: GuideInput!): Guide!
+  updateGuide(id: ID!, input: GuideInput!): Guide!
 }
 
 input GuideInput {
-  description: String!
-  patientId: ID!
-  doctorId: ID!
+  doctor: GuideDoctorInput!
+  patient: GuidePatientInput!
+  procedureTable: GuideProcedureTableInput!
+  proceduresGuide: [GuideProceduresInput!]!
+  comments: String
+  start: String!
+  isClosed: Boolean
+}
+
+input GuideDoctorInput {
+  id: ID!
+  name: String
+}
+
+input GuidePatientInput {
+  id: ID!
+  name: String
+}
+
+input GuideProcedureTableInput {
+  id: ID!
+  name: String
+}
+
+input GuideProceduresInput {
+  id: ID
+  procedure: GuideProcedureInput!
+  value: String!
+  quantity: String!
+}
+
+input GuideProcedureInput {
+  id: ID!
+  name: String!
+}
+
+
+type QueryInfo {
+  ammount: Int
+}
+
+type GetGuide {
+  queryInfo: QueryInfo
+  guides: [Guide]
 }
 
 type Guide {
   id: ID!
-  description: String!
-  doctor: Doctor
   patient: Patient
+  doctor: Doctor
+  procedureTable: ProcedureTable
+  proceduresGuide: [ProceduresGuide]!
+  comments: String
+  start: String!
+  isClosed: Boolean!
   createdAt: DateTime
   updatedAt: DateTime
 }
-
-extend type Doctor {
-  guides: [Guide]
+type Doctor {
+  id: ID!
+  name: String!
 }
 
-extend type Patient {
-  guides: [Guide]
+type Patient {
+  id: ID!
+  name: String!
+}
+
+type ProcedureTable {
+  id: ID!
+  name: String
+}
+
+type ProceduresGuide {
+  id: ID!
+  procedure: Procedure!
+  value: String
+  quantity: String
+}
+
+type Procedure {
+  id: ID!
+  code: String
+  name: String!
 }

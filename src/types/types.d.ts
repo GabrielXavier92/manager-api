@@ -17,7 +17,7 @@ export type Query = {
   doctor: Doctor;
   doctors?: Maybe<Array<Doctor>>;
   guide: Guide;
-  guides?: Maybe<Array<Guide>>;
+  guides?: Maybe<GetGuide>;
   patient: Patient;
   patients?: Maybe<GetPatients>;
   procedureTable: ProcedureTable;
@@ -26,7 +26,6 @@ export type Query = {
   procedure?: Maybe<Procedure>;
   specialty: Specialty;
   specialties?: Maybe<Array<Specialty>>;
-  schedule?: Maybe<Schedule>;
   schedules?: Maybe<Array<Maybe<Schedule>>>;
 };
 
@@ -38,6 +37,13 @@ export type QueryDoctorArgs = {
 
 export type QueryGuideArgs = {
   id: Scalars['ID'];
+};
+
+
+export type QueryGuidesArgs = {
+  take?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['ID']>;
+  filter?: Maybe<Scalars['String']>;
 };
 
 
@@ -76,11 +82,6 @@ export type QuerySpecialtyArgs = {
 };
 
 
-export type QueryScheduleArgs = {
-  id: Scalars['ID'];
-};
-
-
 export type QuerySchedulesArgs = {
   start: Scalars['String'];
   end: Scalars['String'];
@@ -93,7 +94,7 @@ export type Mutation = {
   createDoctor: Doctor;
   updateDoctor: Doctor;
   createGuide: Guide;
-  updateGuides: Guide;
+  updateGuide: Guide;
   createPatient: Patient;
   updatePatient: Patient;
   createProcedureTable: ProcedureTable;
@@ -133,7 +134,7 @@ export type MutationCreateGuideArgs = {
 };
 
 
-export type MutationUpdateGuidesArgs = {
+export type MutationUpdateGuideArgs = {
   id: Scalars['ID'];
   input: GuideInput;
 };
@@ -286,7 +287,6 @@ export type Doctor = {
   specialties?: Maybe<Array<Maybe<Specialty>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  guides?: Maybe<Array<Maybe<Guide>>>;
 };
 
 export type Specialty = {
@@ -296,24 +296,69 @@ export type Specialty = {
 };
 
 export type GuideInput = {
-  description: Scalars['String'];
-  patientId: Scalars['ID'];
-  doctorId: Scalars['ID'];
+  doctor: GuideDoctorInput;
+  patient: GuidePatientInput;
+  procedureTable: GuideProcedureTableInput;
+  proceduresGuide: Array<GuideProceduresInput>;
+  comments?: Maybe<Scalars['String']>;
+  start: Scalars['String'];
+  isClosed?: Maybe<Scalars['Boolean']>;
+};
+
+export type GuideDoctorInput = {
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+export type GuidePatientInput = {
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+export type GuideProcedureTableInput = {
+  id: Scalars['ID'];
+  name?: Maybe<Scalars['String']>;
+};
+
+export type GuideProceduresInput = {
+  id?: Maybe<Scalars['ID']>;
+  procedure: GuideProcedureInput;
+  value: Scalars['String'];
+  quantity: Scalars['String'];
+};
+
+export type GuideProcedureInput = {
+  id: Scalars['ID'];
+  name: Scalars['String'];
+};
+
+export type QueryInfo = {
+  __typename?: 'QueryInfo';
+  ammount?: Maybe<Scalars['Int']>;
+};
+
+export type GetGuide = {
+  __typename?: 'GetGuide';
+  queryInfo?: Maybe<QueryInfo>;
+  guides?: Maybe<Array<Maybe<Guide>>>;
 };
 
 export type Guide = {
   __typename?: 'Guide';
   id: Scalars['ID'];
-  description: Scalars['String'];
-  doctor?: Maybe<Doctor>;
   patient?: Maybe<Patient>;
+  doctor?: Maybe<Doctor>;
+  procedureTable?: Maybe<ProcedureTable>;
+  proceduresGuide: Array<Maybe<ProceduresGuide>>;
+  comments?: Maybe<Scalars['String']>;
+  start: Scalars['String'];
+  isClosed: Scalars['Boolean'];
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type Patient = {
   __typename?: 'Patient';
-  guides?: Maybe<Array<Maybe<Guide>>>;
   id: Scalars['ID'];
   name: Scalars['String'];
   gender?: Maybe<Gender>;
@@ -326,6 +371,35 @@ export type Patient = {
   street?: Maybe<Scalars['String']>;
   neighborhood?: Maybe<Scalars['String']>;
   complement?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ProcedureTable = {
+  __typename?: 'ProcedureTable';
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  procedures?: Maybe<Array<Maybe<Procedure>>>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type ProceduresGuide = {
+  __typename?: 'ProceduresGuide';
+  id: Scalars['ID'];
+  procedure: Procedure;
+  value?: Maybe<Scalars['String']>;
+  quantity?: Maybe<Scalars['String']>;
+};
+
+export type Procedure = {
+  __typename?: 'Procedure';
+  id: Scalars['ID'];
+  code?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  value?: Maybe<Scalars['String']>;
+  specialty?: Maybe<Specialty>;
+  procedureTable?: Maybe<ProcedureTable>;
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
@@ -342,11 +416,6 @@ export type PatientInput = {
   street?: Maybe<Scalars['String']>;
   neighborhood?: Maybe<Scalars['String']>;
   complement?: Maybe<Scalars['String']>;
-};
-
-export type QueryInfo = {
-  __typename?: 'QueryInfo';
-  ammount?: Maybe<Scalars['Int']>;
 };
 
 export type GetPatients = {
@@ -369,27 +438,6 @@ export type ProcedureInput = {
 
 export type SpecialtyInput = {
   name: Scalars['String'];
-};
-
-export type ProcedureTable = {
-  __typename?: 'ProcedureTable';
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  procedures?: Maybe<Array<Maybe<Procedure>>>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-};
-
-export type Procedure = {
-  __typename?: 'Procedure';
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  code?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
-  specialty?: Maybe<Specialty>;
-  procedureTable?: Maybe<ProcedureTable>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type GetProcedures = {
