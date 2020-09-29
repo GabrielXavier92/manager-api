@@ -75,7 +75,7 @@ const defaultSpecialties = [
       { code: '85400211', name: 'Núcleo de Preenchimento' },
       { code: '90060325', name: 'Pinos de retenção(excluindo a restauração)' },
       { code: '85300020', name: 'Imobilização Dentária em Dentes Permanentes' },
-      { code: '85400025', name: 'Ajuste Oclusal por Desgaste Seletiv' },
+      { code: '85400025', name: 'Ajuste Oclusal por Desgaste Seletivo' },
     ],
   },
   {
