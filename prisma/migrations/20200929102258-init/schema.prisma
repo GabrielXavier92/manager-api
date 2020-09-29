@@ -102,7 +102,29 @@ model Guide {
   doctorId String // Relacionamento com um Doctor
   patient Patient @relation(fields: [patientId], references: [id]) // Relacionamento com um Patient
   patientId String // Relacionamento com um Patient
-  description String
+  procedureTable ProcedureTable @relation(fields: [procedureTableId], references: [id]) // Relacionamento com uma tabela
+  procedureTableId String  // Relacionamento com uma tabela
+  proceduresGuide ProcedureGuide[]
+  start String
+  comments String?
+  isClosed Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Foi criado esse relacionamento para que os procedimentos nas guias possam ter seu valor alterado, ou para que no futuro
+// o procedimento na guia seja personalizado
+model ProcedureGuide {
+  id String          @id @default(uuid())
+  account Account @relation(fields: [accountId], references: [id]) // Relacionamento com a conta
+  accountId String // Relacionamento com a conta
+  guide Guide @relation(fields: [guideId], references: [id]) // Relacionamento com a guia
+  guideId String
+  procedure Procedure @relation(fields: [procedureId], references: [id]) // Relacionamento com o procedimento
+  procedureId String
+  name String
+  value String
+  quantity String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -140,7 +162,7 @@ model Procedure {
   procedureTableId String  // Relacionamento com uma tabela
   specialty Specialty @relation(fields: [specialtyId], references: [id]) // Relacionamento com uma especialidade
   specialtyId String // Relacionamento com uma especialidade
-  schedules Schedule[] @relation(references: [id])
+  schedules Schedule[] @relation(references: [id]) // Relacionamento com os agendamentos
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
