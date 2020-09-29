@@ -5,7 +5,8 @@ import { Resolver } from '../../../types/graphql-utils';
 const getPatients: Resolver = async (_, {
   take = 10,
   cursor,
-  filter, fields,
+  filter,
+  fields,
 }, { prisma, user }): Promise<GetPatients> => {
   try {
     let patients;
