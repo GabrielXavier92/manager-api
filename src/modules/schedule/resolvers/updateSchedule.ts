@@ -20,7 +20,6 @@ const updateSchedule: Resolver = async (_, { id, input }: { id: string, input: S
       .map((procedure) => ({ id: procedure.id }));
     const connectProcedures = input?.resources.procedures?.map((procedure: any) => ({ id: procedure.id }));
 
-
     const createdSchedule = await prisma.schedule.update({
       where: {
         id,
@@ -36,6 +35,7 @@ const updateSchedule: Resolver = async (_, { id, input }: { id: string, input: S
           disconnect: disconnectProcedures?.length > 0 ? disconnectProcedures : undefined,
           connect: connectProcedures?.length! > 0 ? connectProcedures : undefined,
         },
+        sendEmail: input.resources.sendEmail,
         account: { connect: { id: user?.accountId } },
       },
       include: { doctor: true, patient: true, procedures: true },
@@ -51,6 +51,7 @@ const updateSchedule: Resolver = async (_, { id, input }: { id: string, input: S
         doctor: createdSchedule.doctor,
         patient: createdSchedule.patient,
         procedures: createdSchedule.procedures,
+        sendEmail: createdSchedule.sendEmail,
         comments: createdSchedule.comments,
       },
     };

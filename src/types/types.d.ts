@@ -457,6 +457,7 @@ export type ScheduleResourcesInput = {
   doctor: ScheduleDoctorInput;
   patient: SchedulePatientInput;
   procedures?: Maybe<Array<Maybe<ScheduleProceduresInput>>>;
+  sendEmail?: Maybe<Scalars['Boolean']>;
   comments?: Maybe<Scalars['String']>;
 };
 
@@ -491,6 +492,7 @@ export type ScheduleResources = {
   doctor: Doctor;
   patient: Patient;
   procedures?: Maybe<Array<Maybe<Procedure>>>;
+  sendEmail?: Maybe<Scalars['Boolean']>;
   comments?: Maybe<Scalars['String']>;
 };
 

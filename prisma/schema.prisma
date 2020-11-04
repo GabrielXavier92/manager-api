@@ -176,6 +176,7 @@ model Schedule {
   patient Patient @relation(fields: [patientId], references: [id]) // Relacionamento com um Patient
   patientId String // Relacionamento com um Patient
   procedures Procedure[] @relation(references: [id])
+  sendEmail Boolean? @default(false)
   start String
   title String
   end String

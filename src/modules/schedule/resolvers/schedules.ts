@@ -25,6 +25,7 @@ const getSchedules: Resolver = async (_, { start, end }, { prisma, user }): Prom
         doctor: schedule.doctor!,
         patient: schedule.patient!,
         procedures: schedule.procedures!,
+        sendEmail: schedule.sendEmail,
         comments: schedule.comments!,
       },
     }));

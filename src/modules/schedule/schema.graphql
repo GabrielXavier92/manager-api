@@ -19,6 +19,7 @@ input ScheduleResourcesInput {
   doctor: ScheduleDoctorInput!
   patient: SchedulePatientInput!
   procedures: [ScheduleProceduresInput]
+  sendEmail: Boolean
   comments: String
 }
 
@@ -51,6 +52,7 @@ type ScheduleResources {
   doctor: Doctor!
   patient: Patient!
   procedures: [Procedure]
+  sendEmail: Boolean
   comments: String
 }
 

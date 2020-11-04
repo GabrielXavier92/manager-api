@@ -20,6 +20,7 @@ const createSchedule: Resolver = async (_, { input }: { input: ScheduleInput}, {
         doctor: { connect: { id: input.resources.doctor.id } },
         patient: { connect: { id: input.resources.patient.id } },
         procedures: { connect: procedures },
+        sendEmail: input.resources.sendEmail,
         account: { connect: { id: user?.accountId } },
       },
       include: { doctor: true, patient: true, procedures: true },
@@ -35,6 +36,7 @@ const createSchedule: Resolver = async (_, { input }: { input: ScheduleInput}, {
         doctor: createdSchedule.doctor,
         patient: createdSchedule.patient,
         procedures: createdSchedule.procedures,
+        sendEmail: createdSchedule.sendEmail,
         comments: createdSchedule.comments,
       },
     };
